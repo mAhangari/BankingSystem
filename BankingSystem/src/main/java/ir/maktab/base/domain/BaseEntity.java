@@ -1,9 +1,10 @@
-package ir.Maktab.base.domain;
+package ir.maktab.base.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
-public class BaseEntity<ID extends java.io.Serializable> {
+public class BaseEntity<ID extends Serializable> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
