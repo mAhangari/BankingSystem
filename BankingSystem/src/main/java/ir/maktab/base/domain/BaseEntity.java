@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 @MappedSuperclass
 public class BaseEntity<ID extends Serializable> {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private ID id;
 	
 	@Column(name = "is_Delet", columnDefinition = "TINYINT(1)")
@@ -16,9 +16,9 @@ public class BaseEntity<ID extends Serializable> {
 	public BaseEntity() {
 	}
 	
-    public BaseEntity(Boolean isDeleted) {
-		this.setId(id);
+    public BaseEntity(Boolean isDeleted, ID id) {
 		this.setDeleted(isDeleted);
+        this.setId(id);
 	}
 
 	public ID getId() {
