@@ -1,4 +1,4 @@
-package ir.Maktab;
+package ir.maktab;
 
 import static org.junit.Assert.assertTrue;
 

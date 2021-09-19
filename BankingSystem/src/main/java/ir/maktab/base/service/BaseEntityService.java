@@ -1,6 +1,6 @@
-package ir.Maktab.base.service;
+package ir.maktab.base.service;
 
-import ir.Maktab.base.domain.BaseEntity;
+import ir.maktab.base.domain.BaseEntity;
 
 import java.io.Serializable;
 import java.util.Collection;
