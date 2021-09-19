@@ -1,7 +1,6 @@
 package ir.maktab.domain;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
@@ -26,14 +25,9 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Customer extends User {
 	
 	public static final String FETCH_TWEET_AND_COMMENT = "FETCH_TWEET_AND_COMMENT";
-	public static final String BIRTHDAY = "birthday";
-
-	@Column(name = BIRTHDAY)
-	private Date birthday;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Account> accounts = new HashSet<>();
@@ -47,15 +41,6 @@ public class Customer extends User {
 		//super.setIsActive(isActive);
 		//this.setBirthday(birthday);
 	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
 	
 	@Override
 	public String toString() {
@@ -64,6 +49,6 @@ public class Customer extends User {
                 "lastName= '" + getLastName() + "' " +
                 "username= '" + getUsername() + "' " +
                 "password= '" + getPassword() + "' " +
-                "birthday= '" + birthday + "' ";
+                "birthday= '" + getBirthDate() + "' ";
 	}
 }
