@@ -8,8 +8,8 @@ public class CheckInputInformation {
 	public boolean checkUsername(String username) {
 		boolean check = ApplicationContext.userServ.existsByUsername(username);
 		if(check) {
-			BaseMenu.singlePrintMessage("This Username is Alrady Exists.");
-			return check;
+			BaseMenu.singlePrintMessage("This Username is already Exists.");
+			return true;
 		}
 		boolean match = Pattern.matches("^[A-Za-z0-9_-]{3,15}$", username);
 		return !match;
