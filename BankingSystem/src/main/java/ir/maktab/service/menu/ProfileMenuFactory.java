@@ -7,19 +7,19 @@ import java.util.Map;
 
 public final class ProfileMenuFactory {
 
-    private static final Map<UserType, ProfileMenu<? extends User>> profileMenus = new HashMap<>() {
+    private static final Map<UserType, ProfileMenu> profileMenus = new HashMap<>() {
         {
             put(UserType.Customer, new CustomerProfileMenu());
             put(UserType.Employee, new EmployeeProfileMenu());
             put(UserType.Boss, new BossProfileMenu());
         }
     };
-    private static ProfileMenu<? extends User> profileMenu;
+    private static ProfileMenu profileMenu;
 
     private ProfileMenuFactory() {
     }
 
-    public static synchronized ProfileMenu<? extends User> getProfileMenu(User user) {
+    public static synchronized ProfileMenu getProfileMenu(User user) {
         if (profileMenu == null)
             profileMenu = profileMenus.get(user.getUserType());
 
