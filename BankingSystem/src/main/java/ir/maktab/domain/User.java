@@ -27,6 +27,7 @@ public class User extends BaseEntity<Long> {
     public static final String EMAIL = "email";
     public static final String BIRTH_DATE = "birth_date";
     public static final String USER_ID = "user_id";
+    public static final String IS_ACTIVE = "is_active";
 
     @Column(name = FIRST_NAME)
     private String firstName;
@@ -34,13 +35,13 @@ public class User extends BaseEntity<Long> {
     @Column(name = LAST_NAME)
     private String lastName;
 
-    @Column(name = USER_NAME, unique = true)
+    @Column(name = USER_NAME, unique = true, nullable = false)
     private String username;
 
-    @Column(name = PASSWORD)
+    @Column(name = PASSWORD, nullable = false)
     private String password;
 
-    @Column(name = USER_TYPE)
+    @Column(name = USER_TYPE, nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserType userType;
 
@@ -55,6 +56,7 @@ public class User extends BaseEntity<Long> {
     @Column(name = BIRTH_DATE)
     private ZonedDateTime birthDate;
 
+    @Column(name = IS_ACTIVE, nullable = false)
     private Boolean isActive;
 
     @Override
