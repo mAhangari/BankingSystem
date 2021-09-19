@@ -1,8 +1,8 @@
-package ir.Maktab.base.service.impl;
+package ir.maktab.base.service.impl;
 
-import ir.Maktab.base.domain.BaseEntity;
-import ir.Maktab.base.repository.BaseEntityRepository;
-import ir.Maktab.base.service.BaseEntityService;
+import ir.maktab.base.domain.BaseEntity;
+import ir.maktab.base.repository.BaseEntityRepository;
+import ir.maktab.base.service.BaseEntityService;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;

@@ -1,7 +1,7 @@
-package ir.Maktab.base.repository.impl;
+package ir.maktab.base.repository.impl;
 
-import ir.Maktab.base.domain.BaseEntity;
-import ir.Maktab.base.repository.BaseEntityRepository;
+import ir.maktab.base.domain.BaseEntity;
+import ir.maktab.base.repository.BaseEntityRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
