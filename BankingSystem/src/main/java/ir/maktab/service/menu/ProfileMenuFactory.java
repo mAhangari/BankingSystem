@@ -5,25 +5,19 @@ import ir.maktab.domain.enumeration.UserType;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class ProfileMenuFactory {
+public class ProfileMenuFactory {
 
-    private static final Map<UserType, ProfileMenu> profileMenus = new HashMap<>() {
+    private static final Map<UserType, ProfileMenu<? extends User>> profileMenus = new HashMap<>() {
         {
             put(UserType.Customer, new CustomerProfileMenu());
             put(UserType.Employee, new EmployeeProfileMenu());
             put(UserType.Boss, new BossProfileMenu());
         }
     };
-    private static ProfileMenu profileMenu;
 
-    private ProfileMenuFactory() {
-    }
+    public static ProfileMenu<? extends User> getProfileMenu(User user) {
 
-    public static synchronized ProfileMenu getProfileMenu(User user) {
-        if (profileMenu == null)
-            profileMenu = profileMenus.get(user.getUserType());
-
-        return profileMenu;
+        return profileMenus.get(user.getUserType());
     }
 
 }
