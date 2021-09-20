@@ -51,7 +51,7 @@ public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID exte
 		//em.remove(e);
 		em.createQuery(
 				"UPDATE " + getEntityClass().getSimpleName() + 
-				" AZ a SET a.isDeleted = 1 WHERE a.id =: id")
+				" AS a SET a.isDeleted = 1 WHERE a.id =: id")
 		.setParameter("id", e.getId()).executeUpdate();
 	}
 
@@ -64,7 +64,7 @@ public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID exte
 	public Boolean existsById(ID id) {
 		return em.createQuery(
 				"SELECT COUNT(e.id) FROM " + getEntityClass().getSimpleName() +
-				" AZ e WHERE e.id =: id AND e.isDeleted = 0 AND isActive = 1"
+				" AS e WHERE e.id =: id AND e.isDeleted = 0 AND e.isActive = 1"
 				, Long.class
 				).setParameter("id", id).getSingleResult() == 1L;
 	}
