@@ -1,48 +1,47 @@
 package ir.maktab.service.menu;
 
+import ir.maktab.domain.Customer;
+import ir.maktab.domain.User;
 import ir.maktab.util.ApplicationContext;
+
 import java.util.*;
 
-public class CustomerProfileMenu implements ProfileMenu {
+public class CustomerProfileMenu implements ProfileMenu<Customer> {
 
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard() {
+    public void dashboard(User customer) {
         try {
             List<String> list = new ArrayList<>(
-                    Arrays.asList("Card Management", "Money Transfer", "Assign or Change Password",
+                    Arrays.asList("Money Transfer", "Assign or Change Password",
                             "Recent Transactions", "Log Out"));
             BaseMenu.optionMessage(list, true);
 
             switch (input.nextInt()) {
                 case 1 -> {
-                    ApplicationContext.creditCardServ.cardManagement();
-                    dashboard();
+                    ApplicationContext.creditCardServ.cardToCartTransfer((Customer) customer);
+                    dashboard(customer);
                 }
                 case 2 -> {
-                    ApplicationContext.creditCardServ.CardToCartTransfer();
-                    dashboard();
+                    ApplicationContext.creditCardServ.assignOrChangePassword((Customer) customer);
+                    dashboard(customer);
                 }
                 case 3 -> {
-                    ApplicationContext.creditCardServ.assignOrChangePassword();
-                    dashboard();
+                    ApplicationContext.accountServ.recentTransactions();
+                    dashboard(customer);
                 }
                 case 4 -> {
-                    ApplicationContext.accountServ.recentTransactions();
-                    dashboard();
-                }
-                case 5 -> {
                 }
                 default -> {
                     BaseMenu.singlePrintMessage(BaseMenu.WRONG_NUMBER);
-                    dashboard();
+                    dashboard(customer);
                 }
             }
         } catch (InputMismatchException e) {
             input.nextLine();
             BaseMenu.singlePrintMessage(BaseMenu.WRONG_NUMBER);
-            dashboard();
+            dashboard(customer);
         }
     }
 }
