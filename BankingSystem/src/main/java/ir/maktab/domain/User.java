@@ -15,19 +15,20 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity<Long> {
+public class User extends BaseEntity<Long> implements IUser {
 
     public static final String TABLE_NAME = "user_table";
-    public static final String FIRST_NAME = "first_name";
-    public static final String LAST_NAME = "last_name";
-    public static final String USER_NAME = "user_name";
-    public static final String PASSWORD = "password";
-    public static final String USER_TYPE = "user_type";
-    public static final String MOBILE_NUMBER = "mobile_number";
-    public static final String EMAIL = "email";
-    public static final String BIRTH_DATE = "birth_date";
-    public static final String USER_ID = "user_id";
-    public static final String IS_ACTIVE = "is_active";
+    private static final String FIRST_NAME = "first_name";
+    private static final String LAST_NAME = "last_name";
+    private static final String USER_NAME = "user_name";
+    private static final String PASSWORD = "password";
+    private static final String USER_TYPE = "user_type";
+    private static final String MOBILE_NUMBER = "mobile_number";
+    private static final String EMAIL = "email";
+    private static final String BIRTH_DATE = "birth_date";
+    private static final String USER_ID = "user_id";
+    private static final String IS_ACTIVE = "is_active";
+    //private static final String LOGGED_IN = "logged_in";
 
     @Column(name = FIRST_NAME)
     private String firstName;
@@ -59,6 +60,9 @@ public class User extends BaseEntity<Long> {
     @Column(name = IS_ACTIVE, nullable = false)
     private Boolean isActive;
 
+    @Transient
+    private boolean loggedIn;
+
     @Override
     public String toString() {
         return "User{" +
@@ -67,5 +71,30 @@ public class User extends BaseEntity<Long> {
                 ", username='" + username + '\'' +
                 ", userType='" + userType + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean passwordMatches(String password) {
+        return this.password.equals(password);
+    }
+
+    @Override
+    public void setLoggedIn(boolean value) {
+        this.loggedIn = value;
+    }
+
+    @Override
+    public void setRevoked(boolean value) {
+        setIsActive(value);
+    }
+
+    @Override
+    public boolean isLoggedIn() {
+        return this.loggedIn;
+    }
+
+    @Override
+    public boolean isRevoked() {
+        return !getIsActive();
     }
 }
