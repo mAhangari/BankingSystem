@@ -1,9 +1,8 @@
 package ir.maktab.service.menu;
 
 import ir.maktab.domain.Customer;
-import ir.maktab.domain.User;
+import ir.maktab.domain.IUser;
 import ir.maktab.util.ApplicationContext;
-
 import java.util.*;
 
 public class CustomerProfileMenu implements ProfileMenu<Customer> {
@@ -11,7 +10,7 @@ public class CustomerProfileMenu implements ProfileMenu<Customer> {
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard(User customer) {
+    public void dashboard(IUser customer) {
         try {
             List<String> list = new ArrayList<>(
                     Arrays.asList("Money Transfer", "Assign or Change Password",
