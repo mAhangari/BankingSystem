@@ -5,7 +5,7 @@ import ir.maktab.domain.User;
 
 public interface BaseUserRepository<E extends User, UT, PT> extends BaseEntityRepository<E, Long> {
 
-    E findByUsername(UT username);
+    E findUserByUsername(UT username);
 
     Boolean existsByUsernameAndPassword(UT username, PT password);
 
