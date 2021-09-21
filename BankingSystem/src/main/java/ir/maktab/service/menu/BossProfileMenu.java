@@ -1,8 +1,7 @@
 package ir.maktab.service.menu;
 
 import ir.maktab.domain.Boss;
-import ir.maktab.domain.User;
-
+import ir.maktab.domain.IUser;
 import java.util.*;
 
 public class BossProfileMenu implements ProfileMenu<Boss> {
@@ -10,7 +9,7 @@ public class BossProfileMenu implements ProfileMenu<Boss> {
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard(User boss) {
+    public void dashboard(IUser boss) {
         try {
             List<String> list = new ArrayList<>(
                     Arrays.asList("", "Log Out"));

@@ -5,6 +5,7 @@ import ir.maktab.repository.impl.CreditCardRepositoryImpl;
 import ir.maktab.repository.impl.UserRepositoryImpl;
 import ir.maktab.service.impl.AccountServiceImpl;
 import ir.maktab.service.impl.CreditCardServiceImpl;
+import ir.maktab.service.login.LoginService;
 import ir.maktab.service.menu.Menu;
 import ir.maktab.service.impl.UserServiceImpl;
 
@@ -19,10 +20,14 @@ public class ApplicationContext {
     public static final AccountRepositoryImpl accountRepo;
     public static final AccountServiceImpl accountServ;
 
+    public static final LoginService loginServ;
 
     public static final Menu menu;
     public static final CheckInputInformation chInInformation;
 
+    private ApplicationContext(){
+    }
+    
     static {
         userRepo = new UserRepositoryImpl(HibernateUtil.getEntityMangerFactory());
         userServ = new UserServiceImpl(userRepo);
@@ -32,6 +37,8 @@ public class ApplicationContext {
 
         accountRepo = new AccountRepositoryImpl(HibernateUtil.getEntityMangerFactory());
         accountServ = new AccountServiceImpl(accountRepo);
+
+        loginServ = new LoginService(userServ);
 
         menu = new Menu();
         chInInformation = new CheckInputInformation();

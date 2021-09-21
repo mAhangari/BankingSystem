@@ -1,8 +1,8 @@
 package ir.maktab.service.menu;
 
-import ir.maktab.domain.User;
+import ir.maktab.domain.IUser;
 
-public interface ProfileMenu<E extends User> {
+public interface ProfileMenu<E extends IUser> {
 
-    void dashboard(User entity);
+    void dashboard(IUser entity);
 }

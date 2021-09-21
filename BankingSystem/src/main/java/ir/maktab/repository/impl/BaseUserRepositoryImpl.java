@@ -29,7 +29,7 @@ public abstract class BaseUserRepositoryImpl<E extends User, UT, PT> extends Bas
     }
 
     @Override
-    public E findByUsername(UT username) {
+    public E findUserByUsername(UT username) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<? extends E> cq = cb.createQuery(getEntityClass());
 

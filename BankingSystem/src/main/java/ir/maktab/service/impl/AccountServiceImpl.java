@@ -63,7 +63,7 @@ public class AccountServiceImpl extends BaseEntityServiceImpl<Account, Long, Acc
     }
 
     @Override
-    public void accountManagement(User employee) {
+    public void accountManagement(IUser employee) {
         try {
             List<String> list = new ArrayList<>(Arrays.asList(
                     "Create New Account", "Remove Account", "Exit"
@@ -107,7 +107,7 @@ public class AccountServiceImpl extends BaseEntityServiceImpl<Account, Long, Acc
     private void accountGeneration(Account newAccount, Employee employee) {
         BaseMenu.singleSetMessage("Enter customer username");
         String customerUsername = input.next();
-        User customer = ApplicationContext.userServ.findByUsername(customerUsername);
+        User customer = ApplicationContext.userServ.findUserByUsername(customerUsername);
         if (customer == null)
             return;
         BaseMenu.singleSetMessage("Insert Customer Balance");

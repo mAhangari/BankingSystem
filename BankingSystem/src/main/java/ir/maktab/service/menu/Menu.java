@@ -14,7 +14,13 @@ public class Menu extends BaseMenu {
 
             switch (input.nextInt()) {
                 case 1 -> {
-                    ApplicationContext.userServ.login();
+                    BaseMenu.singleSetMessage("Insert your Username");
+                    var username = input.next();
+
+                    BaseMenu.singleSetMessage("Insert your Password");
+                    var password = input.next();
+
+                    ApplicationContext.loginServ.login(username, password);
                     showMenu();
                 }
                 case 2 -> {

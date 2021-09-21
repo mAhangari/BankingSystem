@@ -2,6 +2,7 @@ package ir.maktab.service.menu;
 
 import ir.maktab.domain.Customer;
 import ir.maktab.domain.Employee;
+import ir.maktab.domain.IUser;
 import ir.maktab.domain.User;
 import ir.maktab.domain.enumeration.UserType;
 import ir.maktab.util.ApplicationContext;
@@ -12,7 +13,7 @@ public class EmployeeProfileMenu implements ProfileMenu<Employee> {
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard(User employee) {
+    public void dashboard(IUser employee) {
         try {
             List<String> list = new ArrayList<>(
                     Arrays.asList("Account Management", "Card Management", "Customer Account", "Log Out"));
@@ -27,7 +28,7 @@ public class EmployeeProfileMenu implements ProfileMenu<Employee> {
                 case 2 -> {
                     BaseMenu.singleSetMessage("Enter customer username");
                     String username = input.next();
-                    User user = ApplicationContext.userServ.findByUsername(username);
+                    User user = ApplicationContext.userServ.findUserByUsername(username);
                     if (user.getUserType().equals(UserType.Customer)){
                         ApplicationContext.creditCardServ.cardManagement(user);
                     }else {
@@ -39,7 +40,7 @@ public class EmployeeProfileMenu implements ProfileMenu<Employee> {
                 case 3 -> {
                     BaseMenu.singleSetMessage("Enter customer username");
                     String username = input.next();
-                    User user = ApplicationContext.userServ.findByUsername(username);
+                    User user = ApplicationContext.userServ.findUserByUsername(username);
                     if (user.getUserType().equals(UserType.Customer)){
                         ApplicationContext.accountServ.displayCustomerAccount((Customer) user);
                     }else {
