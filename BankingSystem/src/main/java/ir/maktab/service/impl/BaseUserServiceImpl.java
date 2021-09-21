@@ -28,10 +28,10 @@ public class BaseUserServiceImpl<E extends User, UT, PT>
     }
 
     @Override
-    public E findByUsername(UT username) {
+    public E findUserByUsername(UT username) {
         EntityManager em = repository.getEntityManager();
         try {
-            return repository.findByUsername(username);
+            return repository.findUserByUsername(username);
         } catch (NoResultException e) {
             return null;
         } finally {
