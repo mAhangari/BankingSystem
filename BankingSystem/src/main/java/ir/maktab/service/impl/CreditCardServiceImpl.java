@@ -1,15 +1,11 @@
 package ir.maktab.service.impl;
 
 import ir.maktab.base.service.impl.BaseEntityServiceImpl;
-import ir.maktab.domain.Account;
-import ir.maktab.domain.CreditCard;
-import ir.maktab.domain.Customer;
-import ir.maktab.domain.User;
+import ir.maktab.domain.*;
 import ir.maktab.repository.CreditCardRepository;
 import ir.maktab.service.CreditCardService;
 import ir.maktab.service.menu.BaseMenu;
 import ir.maktab.util.ApplicationContext;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.sql.Date;
@@ -51,7 +47,7 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
     }
 
     @Override
-    public Boolean cardToCartTransfer(Customer customer) {
+    public Boolean cardToCartTransfer(User customer) {
         try {
             BaseMenu.singleSetMessage("Enter source card number");
             Long sourceCardNumber = input.nextLong();
@@ -118,7 +114,7 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
         return false;
     }
 
-    private CreditCard checkSourceCardExists(Customer customer, Long sourceCardNumber) {
+    private CreditCard checkSourceCardExists(User customer, Long sourceCardNumber) {
         CreditCard sourceCard = findByCardNumber(sourceCardNumber);
         if (sourceCard == null) {
             return null;
@@ -141,7 +137,7 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
     }
 
     @Override
-    public Boolean assignOrChangePassword(Customer customer) {
+    public Boolean assignOrChangePassword(User user) {
         try {
             List<String> list = new ArrayList<>(Arrays.asList(
                     "Change first Password", "Change second Password", "Exit"
@@ -150,6 +146,7 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
 
             switch (input.nextInt()) {
                 case 1 -> {
+                    Customer customer = (Customer) user;
                     List<CreditCard> cards = ApplicationContext
                             .creditCardServ
                             .findAllByAccountId(customer.getAccounts());
@@ -164,10 +161,10 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
                     int option = input.nextInt();
                     if (option > cards.size()) {
                         BaseMenu.singlePrintMessage("This option those not exists");
-                        assignOrChangePassword(customer);
+                        assignOrChangePassword(user);
                         break;
                     } else if (option == 0) {
-                        assignOrChangePassword(customer);
+                        assignOrChangePassword(user);
                         break;
                     } else {
                         BaseMenu.singlePrintMessage("Password should include 4 numbers");
@@ -186,9 +183,10 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
                         } else BaseMenu.singlePrintMessage("Password should include 4 numbers");
                     }
 
-                    assignOrChangePassword(customer);
+                    assignOrChangePassword(user);
                 }
                 case 2 -> {
+                    Customer customer = (Customer) user;
                     List<CreditCard> cards = ApplicationContext
                             .creditCardServ
                             .findAllByAccountId(customer.getAccounts());
@@ -203,10 +201,10 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
                     int option = input.nextInt();
                     if (option > cards.size()) {
                         BaseMenu.singlePrintMessage("This option those not exists");
-                        assignOrChangePassword(customer);
+                        assignOrChangePassword(user);
                         break;
                     } else if (option == 0) {
-                        assignOrChangePassword(customer);
+                        assignOrChangePassword(user);
                         break;
                     } else {
                         BaseMenu.singlePrintMessage("Password should include 5 or more numbers");
@@ -225,20 +223,20 @@ public class CreditCardServiceImpl extends BaseEntityServiceImpl<CreditCard, Lon
                         } else BaseMenu.singlePrintMessage("Password should include 5 or more numbers");
                     }
 
-                    assignOrChangePassword(customer);
+                    assignOrChangePassword(user);
                 }
                 case 3 -> {
 
                 }
                 default -> {
                     BaseMenu.singlePrintMessage(BaseMenu.WRONG_NUMBER);
-                    assignOrChangePassword(customer);
+                    assignOrChangePassword(user);
                 }
             }
         } catch (InputMismatchException e) {
             input.nextLine();
             BaseMenu.singlePrintMessage(BaseMenu.WRONG_NUMBER);
-            assignOrChangePassword(customer);
+            assignOrChangePassword(user);
         }
         return false;
     }
