@@ -4,12 +4,12 @@ import ir.maktab.domain.Boss;
 import ir.maktab.domain.IUser;
 import java.util.*;
 
-public class BossProfileMenu implements ProfileMenu<Boss> {
+public class BossProfileMenu<E extends IUser> implements ProfileMenu<E> {
 
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard(IUser boss) {
+    public void dashboard(E boss) {
         try {
             List<String> list = new ArrayList<>(
                     Arrays.asList("", "Log Out"));
