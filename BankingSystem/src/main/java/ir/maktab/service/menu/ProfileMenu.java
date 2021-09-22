@@ -4,5 +4,5 @@ import ir.maktab.domain.IUser;
 
 public interface ProfileMenu<E extends IUser> {
 
-    void dashboard(IUser entity);
+    void dashboard(E entity);
 }

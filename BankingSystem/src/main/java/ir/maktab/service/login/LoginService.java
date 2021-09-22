@@ -1,6 +1,6 @@
 package ir.maktab.service.login;
 
-import ir.maktab.domain.IUser;
+import ir.maktab.domain.User;
 import ir.maktab.service.ExceptionHandling.AccountNotFoundException;
 import ir.maktab.service.UserService;
 import ir.maktab.util.LoginServiceContext;
@@ -14,7 +14,7 @@ public class LoginService extends LoginServiceContext {
     }
 
     public void login(String username, String password) {
-        IUser user = userService.findUserByUsername(username);
+        User user = userService.findUserByUsername(username);
 
         if (user == null)
             throw new AccountNotFoundException("Account not exists");

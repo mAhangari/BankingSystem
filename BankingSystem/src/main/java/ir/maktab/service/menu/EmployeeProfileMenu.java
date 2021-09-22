@@ -1,19 +1,18 @@
 package ir.maktab.service.menu;
 
 import ir.maktab.domain.Customer;
-import ir.maktab.domain.Employee;
 import ir.maktab.domain.IUser;
 import ir.maktab.domain.User;
 import ir.maktab.domain.enumeration.UserType;
 import ir.maktab.util.ApplicationContext;
 import java.util.*;
 
-public class EmployeeProfileMenu implements ProfileMenu<Employee> {
+public class EmployeeProfileMenu<E extends IUser> implements ProfileMenu<E> {
 
     Scanner input = new Scanner(System.in);
 
     @Override
-    public void dashboard(IUser employee) {
+    public void dashboard(E employee) {
         try {
             List<String> list = new ArrayList<>(
                     Arrays.asList("Account Management", "Card Management", "Customer Account", "Log Out"));
