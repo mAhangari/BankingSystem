@@ -1,14 +1,10 @@
 package ir.maktab.service.login;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import ir.maktab.domain.IUser;
 import ir.maktab.domain.User;
 import ir.maktab.service.ExceptionHandling.AccountLoginLimitReachedException;
 import ir.maktab.service.ExceptionHandling.AccountNotFoundException;
 import ir.maktab.service.UserService;
-import ir.maktab.service.menu.ProfileMenu;
-import ir.maktab.service.menu.ProfileMenuFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -23,10 +19,6 @@ public class LoginServiceTest {
     @BeforeEach
     public void init() {
         account = mock(User.class);
-        ProfileMenu profileMenu = mock(ProfileMenu.class);
-
-        when(ProfileMenuFactory.getProfileMenu(any())).thenReturn(profileMenu);
-        doNothing().when(profileMenu).dashboard(null);
         when(account.getUsername()).thenReturn("brett");
         accountService = mock(UserService.class);
         when(accountService.findUserByUsername(anyString())).thenReturn(account);
