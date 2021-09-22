@@ -1,6 +1,6 @@
 package ir.maktab.service.login;
 
-import ir.maktab.domain.IUser;
+import ir.maktab.domain.User;
 import ir.maktab.util.LoginServiceContext;
 
 public class AfterFirstFailedLoginAttempt extends LoginServiceState {
@@ -11,7 +11,7 @@ public class AfterFirstFailedLoginAttempt extends LoginServiceState {
     }
 
     @Override
-    public void handleIncorrectPassword(LoginServiceContext context, IUser account,
+    public void handleIncorrectPassword(LoginServiceContext context, User account,
                                         String password) {
         if (previousAccountId.equals(account.getUsername()))
             context.setState(new AfterSecondFailedLoginAttempt(account.getUsername()));
